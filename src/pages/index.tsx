@@ -5,7 +5,7 @@ import {
   ListTasksQuery,
 } from "./generated.apollo.types"
 
-const LIST_TASKS_QUERY = gql`
+export const LIST_TASKS_QUERY = gql`
   query ListTasks {
     tasks {
       id
@@ -28,6 +28,7 @@ export default function Index() {
 
   const [addTask] = useMutation<AddTaskMutation, AddTaskMutationVariables>(
     ADD_TASK_MUTATION,
+    {refetchQueries: ["ListTasks"]},
   )
 
   if (listTasksError) return <div>Failed to load</div>
