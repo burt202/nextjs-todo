@@ -8,8 +8,10 @@ import {
 } from "@apollo/client"
 import {AppProps} from "next/app"
 
+import config from "../config"
+
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/api/graphql",
+  uri: config.gqlEndpoint,
 })
 
 const client = new ApolloClient({
