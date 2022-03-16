@@ -1,19 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
-import useSWR from "swr"
+import {gql, useQuery} from "@apollo/client"
+import {ListTasksQuery} from "./generated.apollo.types"
 
-const fetcher = (query) =>
-  fetch("/api/graphql", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({query}),
-  })
-    .then((res) => res.json())
-    .then((json) => json.data)
+const LIST_TASKS_QUERY = gql`
+  query ListTasks {
+    tasks {
+      id
+      name
+    }
+  }
+`
 
 export default function Index() {
-  const {data, error} = useSWR("{ tasks { id, name } }", fetcher)
+  const {data, error} = useQuery<ListTasksQuery>(LIST_TASKS_QUERY)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
