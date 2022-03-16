@@ -23,6 +23,12 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "import/named": "off",
     "import/namespace": "off",
     "import/default": "off",

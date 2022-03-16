@@ -1,5 +1,9 @@
-import {gql, useQuery} from "@apollo/client"
-import {ListTasksQuery} from "./generated.apollo.types"
+import {gql, useMutation, useQuery} from "@apollo/client"
+import {
+  AddTaskMutation,
+  AddTaskMutationVariables,
+  ListTasksQuery,
+} from "./generated.apollo.types"
 
 const LIST_TASKS_QUERY = gql`
   query ListTasks {
@@ -10,19 +14,39 @@ const LIST_TASKS_QUERY = gql`
   }
 `
 
+const ADD_TASK_MUTATION = gql`
+  mutation AddTask($name: String!) {
+    addTask(name: $name) {
+      id
+    }
+  }
+`
+
 export default function Index() {
-  const {data, error} = useQuery<ListTasksQuery>(LIST_TASKS_QUERY)
+  const {data: listTasksData, error: listTasksError} =
+    useQuery<ListTasksQuery>(LIST_TASKS_QUERY)
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  const [addTask] = useMutation<AddTaskMutation, AddTaskMutationVariables>(
+    ADD_TASK_MUTATION,
+  )
 
-  const {tasks} = data
+  if (listTasksError) return <div>Failed to load</div>
+  if (!listTasksData) return <div>Loading...</div>
+
+  const {tasks} = listTasksData
 
   return (
-    <div>
+    <div style={{padding: 30}}>
       {tasks.map((task, i) => (
         <div key={i}>{task.name}</div>
       ))}
+      <button
+        onClick={async () => {
+          await addTask({variables: {name: "uygdhisjdfsko"}})
+        }}
+      >
+        Add
+      </button>
     </div>
   )
 }
