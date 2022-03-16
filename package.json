@@ -4,7 +4,7 @@
     "prepare": "husky install",
     "lint": "next lint",
     "gql-api-codegen": "graphql-codegen --config ./src/pages/api/codegen.yml",
-    "client-codegen": "graphql-codegen --config ./src/pages/codegen.yml",
+    "client-codegen": "SCHEMA_PATH=http://localhost:3001/api/graphql graphql-codegen --config ./src/pages/codegen.yml",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"

@@ -1,5 +1,5 @@
 overwrite: true
-schema: "http://localhost:3001/api/graphql"
+schema: ${SCHEMA_PATH}
 documents: "./src/pages/*.{ts,tsx}"
 generates:
   src/pages/generated.apollo.types.ts:
