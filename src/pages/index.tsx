@@ -38,24 +38,24 @@ export default function Index() {
 
   return (
     <div style={{padding: 30}}>
-      <div className="m-40">
-        <h1 className="text-3xl text-cyan-500">
-          Tailwind CSS 3 with{" "}
-          <span className="font-sans text-gray-700 shadow-md shadow-cyan-500/30 px-2 py-2 font-light rounded-full">
-            Next.JS
-          </span>
-        </h1>
+      <div className="mx-40 my-10">
+        <h1 className="text-3xl text-cyan-500">TODO List</h1>
+        <ul className="my-10">
+          {tasks.map((task, i) => (
+            <li className="py-2 border-b-2" key={i}>
+              {task.name}
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={async () => {
+            await addTask({variables: {name: "uygdhisjdfsko"}})
+          }}
+          className="rounded-lg bg-slate-500 text-white px-5 py-2"
+        >
+          Add
+        </button>
       </div>
-      {tasks.map((task, i) => (
-        <div key={i}>{task.name}</div>
-      ))}
-      <button
-        onClick={async () => {
-          await addTask({variables: {name: "uygdhisjdfsko"}})
-        }}
-      >
-        Add
-      </button>
     </div>
   )
 }
