@@ -38,6 +38,14 @@ export default function Index() {
 
   return (
     <div style={{padding: 30}}>
+      <div className="m-40">
+        <h1 className="text-3xl text-cyan-500">
+          Tailwind CSS 3 with{" "}
+          <span className="font-sans text-gray-700 shadow-md shadow-cyan-500/30 px-2 py-2 font-light rounded-full">
+            Next.JS
+          </span>
+        </h1>
+      </div>
       {tasks.map((task, i) => (
         <div key={i}>{task.name}</div>
       ))}
