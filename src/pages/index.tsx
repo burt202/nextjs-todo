@@ -3,7 +3,7 @@ import {
   AddTaskMutation,
   AddTaskMutationVariables,
   ListTasksQuery,
-} from "./generated.apollo.types"
+} from "../generated/apollo.types"
 
 export const LIST_TASKS_QUERY = gql`
   query ListTasks {

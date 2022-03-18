@@ -2,7 +2,7 @@ overwrite: true
 schema: ${SCHEMA_PATH}
 documents: "./src/pages/*.{ts,tsx}"
 generates:
-  src/pages/generated.apollo.types.ts:
+  src/generated/apollo.types.ts:
     plugins:
       - "typescript"
       - "typescript-operations"

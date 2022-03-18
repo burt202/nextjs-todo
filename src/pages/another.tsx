@@ -1,7 +1,7 @@
 import {GraphQLClient} from "graphql-request"
 import {GetServerSideProps} from "next"
 import config from "../config"
-import {ListTasksQuery} from "./generated.apollo.types"
+import {ListTasksQuery} from "../generated/apollo.types"
 import {LIST_TASKS_QUERY} from "."
 
 interface Props {

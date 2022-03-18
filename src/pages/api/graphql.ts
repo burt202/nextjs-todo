@@ -1,7 +1,7 @@
 import {ApolloServer, gql} from "apollo-server-micro"
 import {NextApiRequest, NextApiResponse} from "next"
 import * as uuid from "uuid"
-import {MutationAddTaskArgs} from "./generated.graphql.types"
+import {MutationAddTaskArgs} from "../../generated/graphql.types"
 
 const typeDefs = gql`
   type Query {
