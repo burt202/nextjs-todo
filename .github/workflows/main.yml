@@ -15,4 +15,4 @@ jobs:
       - run: npm i -g npm@8 --registry=https://registry.npmjs.org
       - run: echo `npm -v` && echo `node -v`
       - run: npm ci
-      - run: npm lint
+      - run: npm run lint
