@@ -1,4 +1,5 @@
 import {gql, useMutation, useQuery} from "@apollo/client"
+import {useState} from "react"
 import {
   AddTaskMutation,
   AddTaskMutationVariables,
@@ -23,6 +24,8 @@ const ADD_TASK_MUTATION = gql`
 `
 
 export default function Index() {
+  const [newTaskText, setNewTaskText] = useState("")
+
   const {data: listTasksData, error: listTasksError} =
     useQuery<ListTasksQuery>(LIST_TASKS_QUERY)
 
@@ -37,7 +40,7 @@ export default function Index() {
   const {tasks} = listTasksData
 
   return (
-    <div style={{padding: 30}}>
+    <div className="p-10">
       <div className="mx-40 my-10">
         <h1 className="text-3xl text-cyan-500">TODO List</h1>
         <ul className="my-10">
@@ -47,14 +50,25 @@ export default function Index() {
             </li>
           ))}
         </ul>
-        <button
-          onClick={async () => {
-            await addTask({variables: {name: "uygdhisjdfsko"}})
-          }}
-          className="rounded-lg bg-slate-500 text-white px-5 py-2"
-        >
-          Add
-        </button>
+        <div>
+          <input
+            type="text"
+            className="border-2 p-2 mr-5"
+            value={newTaskText}
+            onChange={(e) => {
+              setNewTaskText(e.target.value)
+            }}
+          />
+          <button
+            onClick={async () => {
+              await addTask({variables: {name: newTaskText}})
+              setNewTaskText("")
+            }}
+            className="rounded-lg bg-slate-500 text-white px-5 py-2"
+          >
+            Add
+          </button>
+        </div>
       </div>
     </div>
   )

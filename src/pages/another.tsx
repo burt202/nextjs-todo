@@ -12,7 +12,7 @@ export default function Another(props: Props) {
   const {tasks} = props
 
   return (
-    <div style={{padding: 30}}>
+    <div className="p-10">
       {tasks.map((task, i) => (
         <div key={i}>{task.name}</div>
       ))}
